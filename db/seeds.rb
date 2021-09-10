@@ -12,3 +12,5 @@ user = User.create!(
   password: 'secret',
   password_confirmation: 'secret'
 )
+
+user.questions.create!(heading: 'ruby on rails latest version', description: 'ror latest version', votes: 1)

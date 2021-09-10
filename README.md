@@ -32,3 +32,6 @@ This project is a stack overflow clone written in Rails with postgres database
       2. `rails g migration add_reputation_to_users reputation:int`
       3. `rails g migration add_name_to_users name:string`
    2. rails g migration doesn't validate attribute type
+
+2. add model
+   1. question: `rails g model Question heading:string description:string votes:integer user:references`
