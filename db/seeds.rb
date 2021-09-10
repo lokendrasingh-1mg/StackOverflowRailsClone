@@ -24,3 +24,7 @@ question.answers.create!(
   user: User.first,
   votes: 1,
 )
+
+# TODO: discuss convention [] vs ()
+# map vs each
+%w[Ruby Python Java JS].map { |lang| Tag.create!(name: lang) }
