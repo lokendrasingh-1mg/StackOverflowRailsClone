@@ -13,4 +13,14 @@ user = User.create!(
   password_confirmation: 'secret'
 )
 
-user.questions.create!(heading: 'ruby on rails latest version', description: 'ror latest version', votes: 1)
+question = user.questions.create!(
+  heading: 'ruby on rails latest version',
+  description: 'ror latest version',
+  votes: 1,
+)
+
+question.answers.create!(
+  content: 'ROR latest stable is 6.1.4',
+  user: User.first,
+  votes: 1,
+)

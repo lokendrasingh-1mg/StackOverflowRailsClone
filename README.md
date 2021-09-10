@@ -35,3 +35,4 @@ This project is a stack overflow clone written in Rails with postgres database
 
 2. add model
    1. question: `rails g model Question heading:string description:string votes:integer user:references`
+   2. answer: `rails g model Answer content:string votes:integer user:references question:references`
