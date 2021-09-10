@@ -30,4 +30,5 @@ This project is a stack overflow clone written in Rails with postgres database
    1. add custom fields to model: https://gist.github.com/withoutwax/46a05861aa4750384df971b641170407
       1. enable scoped_view
       2. `rails g migration add_reputation_to_users reputation:int`
-   2. rails migration doesn't validate attribute type
+      3. `rails g migration add_name_to_users name:string`
+   2. rails g migration doesn't validate attribute type
