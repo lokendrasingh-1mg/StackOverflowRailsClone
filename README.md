@@ -37,3 +37,8 @@ This project is a stack overflow clone written in Rails with postgres database
    1. question: `rails g model Question heading:string description:string votes:integer user:references`
    2. answer: `rails g model Answer content:string votes:integer user:references question:references`
    3. tag: `rails g model Tag name:string`
+   4. comment 
+      1. `rails g model Comment content:string votes:integer commentable_id:integer commentable_type:string user:references`
+      2. add ```belongs_to :commentable, polymorphic: true``` to comment model
+      3. add ```has_many :comments, as: :commentable``` to relevant models
+      4. source: https://betterprogramming.pub/polymorphic-associations-in-rails-72a91ae1a9dd

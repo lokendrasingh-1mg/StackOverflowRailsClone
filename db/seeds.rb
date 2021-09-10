@@ -19,7 +19,7 @@ question = user.questions.create!(
   votes: 1,
 )
 
-question.answers.create!(
+answer = question.answers.create!(
   content: 'ROR latest stable is 6.1.4',
   user: User.first,
   votes: 1,
@@ -28,3 +28,14 @@ question.answers.create!(
 # TODO: discuss convention [] vs ()
 # map vs each
 %w[Ruby Python Java JS].map { |lang| Tag.create!(name: lang) }
+
+question.comments.create!(
+  content: 'Nice question',
+  user: User.first,
+  votes: 1,
+)
+answer.comments.create!(
+  content: 'Nice answer',
+  user: User.first,
+  votes: 1,
+)
