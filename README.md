@@ -42,3 +42,6 @@ This project is a stack overflow clone written in Rails with postgres database
       2. add ```belongs_to :commentable, polymorphic: true``` to comment model
       3. add ```has_many :comments, as: :commentable``` to relevant models
       4. source: https://betterprogramming.pub/polymorphic-associations-in-rails-72a91ae1a9dd
+   5. uservote
+      1. `rails g model Uservote value:integer votable_id:integer votable_type:string user:references`
+      2. and update models respectively

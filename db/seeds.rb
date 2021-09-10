@@ -29,13 +29,34 @@ answer = question.answers.create!(
 # map vs each
 %w[Ruby Python Java JS].map { |lang| Tag.create!(name: lang) }
 
-question.comments.create!(
+comment_on_q = question.comments.create!(
   content: 'Nice question',
   user: User.first,
   votes: 1,
 )
-answer.comments.create!(
+
+comment_on_a = answer.comments.create!(
   content: 'Nice answer',
   user: User.first,
   votes: 1,
+)
+
+question.uservotes.create!(
+  value: 1,
+  user: User.first,
+)
+
+answer.uservotes.create!(
+  value: 1,
+  user: User.first,
+)
+
+comment_on_q.uservotes.create!(
+  value: 1,
+  user: User.first,
+)
+
+comment_on_a.uservotes.create!(
+  value: 1,
+  user: User.first,
 )
