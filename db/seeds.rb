@@ -25,9 +25,8 @@ answer = question.answers.create!(
   votes: 1,
 )
 
-# TODO: discuss convention [] vs ()
-# map vs each
-%w[Ruby Python Java JS].map { |lang| Tag.create!(name: lang) }
+# TODO: good practice to pass output of one function to another or introduce a variable?
+Tag.insert_all_normalized(%w[Ruby Python Java JS].map { |lang| { name: lang.downcase! } })
 
 comment_on_q = question.comments.create!(
   content: 'Nice question',
