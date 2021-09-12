@@ -31,6 +31,7 @@ Tag.insert_all_normalized(languages.map { |lang| { name: lang } })
 tags = Tag.all
 
 question.tags << tags.sample(3)
+user.tags << tags.sample(3)
 
 comment_on_q = question.comments.create!(
   content: 'Nice question',

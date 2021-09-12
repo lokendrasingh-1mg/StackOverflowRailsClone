@@ -51,7 +51,9 @@ This project is a stack overflow clone written in Rails with postgres database
     6. QuestionTag:
         1. Don't generate the model: `rails generate migration CreateJoinTableQuestionsTags questions tags`
         2. Generate the model `rails generate model questions_tags question:references tag:references`
-        3. unique constraint to tag: `rails generate migration add_index_to_tags name:uniq`
+    7. TagUser 
+        1. Don't generate the model: `rails generate migration CreateJoinTableTagsUsers tags users`
+    8. unique constraint to tag: `rails generate migration add_index_to_tags name:uniq`
 
 3. insert_all doesn't add time stamp as its not passed through validators
    1. Use a custom function that add timestamps
