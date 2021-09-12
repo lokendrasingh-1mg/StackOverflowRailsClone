@@ -64,3 +64,5 @@ comment_on_a.uservotes.create!(
   value: 1,
   user: User.first,
 )
+
+user.bookmark_questions << question

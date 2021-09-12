@@ -51,12 +51,14 @@ This project is a stack overflow clone written in Rails with postgres database
     6. QuestionTag:
         1. Don't generate the model: `rails generate migration CreateJoinTableQuestionsTags questions tags`
         2. Generate the model `rails generate model questions_tags question:references tag:references`
-    7. TagUser 
+    7. TagUser
         1. Don't generate the model: `rails generate migration CreateJoinTableTagsUsers tags users`
-    8. unique constraint to tag: `rails generate migration add_index_to_tags name:uniq`
+    8. BookmarkQuestions
+        1. Generate the model `rails generate model bookmark question:references user:references`
 
 3. insert_all doesn't add time stamp as its not passed through validators
-   1. Use a custom function that add timestamps
-   2. Use `ActiveSupport::Concern`
-   3. https://codersloth.medium.com/rails-how-to-batch-insert-records-20ea769dcbc4
-   4. `class_method do` internals https://stackoverflow.com/questions/33326257/what-does-class-methods-do-in-concerns/51932490#51932490
+    1. Use a custom function that add timestamps
+    2. Use `ActiveSupport::Concern`
+    3. https://codersloth.medium.com/rails-how-to-batch-insert-records-20ea769dcbc4
+    4. `class_method do`
+       internals https://stackoverflow.com/questions/33326257/what-does-class-methods-do-in-concerns/51932490#51932490
