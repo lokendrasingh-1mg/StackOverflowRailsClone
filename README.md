@@ -55,6 +55,7 @@ This project is a stack overflow clone written in Rails with postgres database
         1. Don't generate the model: `rails generate migration CreateJoinTableTagsUsers tags users`
     8. BookmarkQuestions
         1. Generate the model `rails generate model bookmark question:references user:references`
+    9. unique constraint to tag: `rails generate migration add_index_to_tags name:uniq`
 
 3. insert_all doesn't add time stamp as its not passed through validators
     1. Use a custom function that add timestamps
