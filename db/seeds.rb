@@ -26,7 +26,11 @@ answer = question.answers.create!(
 )
 
 # TODO: good practice to pass output of one function to another or introduce a variable?
-Tag.insert_all_normalized(%w[Ruby Python Java JS].map { |lang| { name: lang.downcase! } })
+languages = %w[ruby python java js c c++ ruby go]
+Tag.insert_all_normalized(languages.map { |lang| { name: lang } })
+tags = Tag.all
+
+question.tags << tags.sample(3)
 
 comment_on_q = question.comments.create!(
   content: 'Nice question',
