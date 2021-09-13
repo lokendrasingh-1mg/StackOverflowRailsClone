@@ -57,6 +57,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 # User added gems
+gem 'acts_as_paranoid'
 gem 'devise'
 gem 'faker'
-gem 'acts_as_paranoid'
+gem 'paper_trail'
