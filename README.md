@@ -88,3 +88,11 @@ This project is a stack overflow clone written in Rails with postgres database
     6. Callbacks
     7. Scopes
     8. Custom Validations
+
+# TODO:
+
+1. paper trail model versions: https://github.com/paper-trail-gem/paper_trail
+2. factory bot https://github.com/thoughtbot/factory_bot
+3. insert all https://github.com/zdennis/activerecord-import
+4. polymorphic: true https://guides.rubyonrails.org/association_basics.html#polymorphic-associations
+5. scientist tdd: https://github.com/github/scientist
