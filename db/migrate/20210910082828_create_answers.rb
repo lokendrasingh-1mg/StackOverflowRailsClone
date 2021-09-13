@@ -4,7 +4,7 @@ class CreateAnswers < ActiveRecord::Migration[6.1]
       t.references :user, null: false, foreign_key: true
       t.references :question, null: false, foreign_key: true
       t.string :content
-      t.integer :votes
+      t.integer :votes, default: 0
       t.datetime :deleted_at, index: true
 
       t.timestamps

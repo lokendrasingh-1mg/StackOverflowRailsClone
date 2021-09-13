@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
     t.bigint "user_id", null: false
     t.bigint "question_id", null: false
     t.string "content"
-    t.integer "votes"
+    t.integer "votes", default: 0
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "content"
-    t.integer "votes"
+    t.integer "votes", default: 0
     t.integer "commentable_id"
     t.string "commentable_type"
     t.datetime "deleted_at"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
     t.bigint "user_id", null: false
     t.string "heading"
     t.string "description"
-    t.integer "votes"
+    t.integer "votes", default: 0
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
