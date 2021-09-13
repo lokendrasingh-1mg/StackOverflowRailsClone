@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "question_id", null: false
+    t.bigint "user_id"
+    t.bigint "question_id"
     t.text "content"
     t.integer "votes", default: 0
     t.datetime "deleted_at"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.bigint "question_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "question_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_bookmarks_on_question_id"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.string "content"
     t.integer "votes", default: 0
     t.string "commentable_type"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.string "heading"
     t.text "description"
     t.integer "votes", default: 0
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
     t.integer "vote_type"
     t.string "votable_type"
     t.bigint "votable_id"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_user_votes_on_user_id"
@@ -116,11 +116,4 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "answers", "questions"
-  add_foreign_key "answers", "users"
-  add_foreign_key "bookmarks", "questions"
-  add_foreign_key "bookmarks", "users"
-  add_foreign_key "comments", "users"
-  add_foreign_key "questions", "users"
-  add_foreign_key "user_votes", "users"
 end
