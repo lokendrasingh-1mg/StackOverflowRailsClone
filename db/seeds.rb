@@ -6,14 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create!(
+first_user = User.create!(
   name: 'John Doe',
   email: 'john@foo.bar',
   password: 'secret',
   password_confirmation: 'secret'
 )
 
-question = user.questions.create!(
+question = first_user.questions.create!(
   heading: 'ruby on rails latest version',
   description: 'ror latest version',
   votes: 1,
@@ -21,7 +21,7 @@ question = user.questions.create!(
 
 answer = question.answers.create!(
   content: 'ROR latest stable is 6.1.4',
-  user: User.first,
+  user: first_user,
   votes: 1,
 )
 
@@ -31,38 +31,38 @@ Tag.insert_all_normalized(languages.map { |lang| { name: lang } })
 tags = Tag.all
 
 question.tags << tags.sample(3)
-user.tags << tags.sample(3)
+first_user.tags << tags.sample(3)
 
 comment_on_q = question.comments.create!(
   content: 'Nice question',
-  user: User.first,
+  user: first_user,
   votes: 1,
 )
 
 comment_on_a = answer.comments.create!(
   content: 'Nice answer',
-  user: User.first,
+  user: first_user,
   votes: 1,
 )
 
 question.uservotes.create!(
   value: 1,
-  user: User.first,
+  user: first_user,
 )
 
 answer.uservotes.create!(
   value: 1,
-  user: User.first,
+  user: first_user,
 )
 
 comment_on_q.uservotes.create!(
   value: 1,
-  user: User.first,
+  user: first_user,
 )
 
 comment_on_a.uservotes.create!(
   value: 1,
-  user: User.first,
+  user: first_user,
 )
 
-user.bookmark_questions << question
+first_user.bookmark_questions << question
