@@ -76,6 +76,9 @@ This project is a stack overflow clone written in Rails with postgres database
     5. `class_method do`
        internals https://stackoverflow.com/questions/33326257/what-does-class-methods-do-in-concerns/51932490#51932490
 
+4. Model version using paper trail
+   1. `rails generate paper_trail:install`
+   2. https://stevepolito.design/blog/paper-trail-gem-tutorial/
 # Convention to be followed
 
 1. Structure of the model should be like this.

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  acts_as_paranoid
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable
@@ -8,6 +10,4 @@ class User < ApplicationRecord
   has_many :bookmarks
   has_many :bookmark_questions, through: :bookmarks, source: :question
   has_and_belongs_to_many :tags
-
-  acts_as_paranoid
 end

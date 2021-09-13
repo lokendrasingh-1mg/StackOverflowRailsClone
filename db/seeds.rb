@@ -13,6 +13,10 @@ question = first_user.questions.create!(
   votes: 1,
 )
 
+2.upto(4) do |i|
+  question.update(heading: "ruby on rails latest version, Version #{i}")
+end
+
 answer = question.answers.create!(
   content: 'ROR latest stable is 6.1.4',
   user: first_user,
