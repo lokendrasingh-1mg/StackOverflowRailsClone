@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
   create_table "answers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "question_id", null: false
-    t.string "content"
+    t.text "content"
     t.integer "votes", default: 0
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
   create_table "questions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "heading"
-    t.string "description"
+    t.text "description"
     t.integer "votes", default: 0
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_120405) do
   end
 
   create_table "user_votes", force: :cascade do |t|
-    t.integer "value"
+    t.integer "vote_type"
     t.integer "votable_id"
     t.string "votable_type"
     t.bigint "user_id", null: false

@@ -55,7 +55,7 @@ This project is a stack overflow clone written in Rails with postgres database
     5. uservote
         1. `rails g model user_vote value:integer votable_id:integer votable_type:string user:references`
         2. and update models respectively
-
+        3. enum to check vote value: https://betterprogramming.pub/how-to-use-enums-in-rails-6-87600e292476
     6. QuestionTag:
         1. Don't generate the model: `rails generate migration CreateJoinTableQuestionsTags questions tags`
         2. Generate the model `rails generate model questions_tags question:references tag:references`
