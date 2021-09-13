@@ -39,22 +39,22 @@ comment_on_a = answer.comments.create!(
   votes: 1,
 )
 
-question.uservotes.create!(
+question.user_votes.create!(
   value: 1,
   user: first_user,
 )
 
-answer.uservotes.create!(
+answer.user_votes.create!(
   value: 1,
   user: first_user,
 )
 
-comment_on_q.uservotes.create!(
+comment_on_q.user_votes.create!(
   value: 1,
   user: first_user,
 )
 
-comment_on_a.uservotes.create!(
+comment_on_a.user_votes.create!(
   value: 1,
   user: first_user,
 )

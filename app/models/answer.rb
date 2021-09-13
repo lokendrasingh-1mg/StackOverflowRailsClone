@@ -3,7 +3,7 @@ class Answer < ApplicationRecord
   belongs_to :question
 
   has_many :comments, as: :commentable
-  has_many :uservotes, as: :votable
+  has_many :user_votes, as: :votable
 
   acts_as_paranoid
 end

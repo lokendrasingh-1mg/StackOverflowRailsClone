@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_12_172456) do
+ActiveRecord::Schema.define(version: 2021_09_13_120405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,16 @@ ActiveRecord::Schema.define(version: 2021_09_12_172456) do
     t.index ["user_id", "tag_id"], name: "index_tags_users_on_user_id_and_tag_id"
   end
 
+  create_table "user_votes", force: :cascade do |t|
+    t.integer "value"
+    t.integer "votable_id"
+    t.string "votable_type"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_votes_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -104,21 +114,11 @@ ActiveRecord::Schema.define(version: 2021_09_12_172456) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "uservotes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.integer "value"
-    t.integer "votable_id"
-    t.string "votable_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_uservotes_on_user_id"
-  end
-
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "bookmarks", "questions"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "questions", "users"
-  add_foreign_key "uservotes", "users"
+  add_foreign_key "user_votes", "users"
 end
