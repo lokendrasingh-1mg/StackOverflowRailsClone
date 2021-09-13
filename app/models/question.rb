@@ -7,4 +7,6 @@ class Question < ApplicationRecord
   has_many :bookmarks
   has_many :bookmark_users, through: :bookmarks, source: :user
   has_and_belongs_to_many :tags
+
+  acts_as_paranoid
 end

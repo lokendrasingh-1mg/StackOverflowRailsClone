@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :bookmark_questions, through: :bookmarks, source: :question
   has_and_belongs_to_many :tags
 
+  acts_as_paranoid
 end

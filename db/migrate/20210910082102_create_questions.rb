@@ -5,6 +5,7 @@ class CreateQuestions < ActiveRecord::Migration[6.1]
       t.string :heading
       t.string :description
       t.integer :votes
+      t.datetime :deleted_at, index: true
 
       t.timestamps
     end

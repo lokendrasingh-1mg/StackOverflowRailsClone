@@ -6,6 +6,7 @@ class CreateComments < ActiveRecord::Migration[6.1]
       t.integer :votes
       t.integer :commentable_id
       t.string :commentable_type
+      t.datetime :deleted_at, index: true
 
       t.timestamps
     end

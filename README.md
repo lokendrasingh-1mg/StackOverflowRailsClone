@@ -34,6 +34,14 @@ This project is a stack overflow clone written in Rails with postgres database
         2. `rails g migration add_reputation_to_users reputation:int`
         3. `rails g migration add_name_to_users name:string`
     2. rails g migration doesn't validate attribute type
+    3. paranoia to user, question, answer, comment
+        1. https://cloudolife.com/2020/09/05/Programming-Language/Ruby/Awesome-Ruby-Gem/Use-paranoia-or-acts_as_paranoid-gem-soft-delete-to-hide-and-restore-records-without-actually-deleting-them/
+        2. `rails generate migration AddDeletedAtToUsers deleted_at:datetime:index`
+        3. use existing migration:
+            1. add `t.datetime :deleted_at, index: true`
+            2. `acts_as_paranoid` in `user` model
+        4. `User.destroy` updates `deleted_at`
+        5. retrieve all deleted by using `User.with_deleted`
 
 2. add model
     1. question: `rails g model Question heading:string description:string votes:integer user:references`

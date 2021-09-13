@@ -4,4 +4,6 @@ class Answer < ApplicationRecord
 
   has_many :comments, as: :commentable
   has_many :uservotes, as: :votable
+
+  acts_as_paranoid
 end

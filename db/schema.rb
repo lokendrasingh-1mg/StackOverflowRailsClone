@@ -16,12 +16,14 @@ ActiveRecord::Schema.define(version: 2021_09_12_172456) do
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.string "content"
-    t.integer "votes"
     t.bigint "user_id", null: false
     t.bigint "question_id", null: false
+    t.string "content"
+    t.integer "votes"
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_answers_on_deleted_at"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
@@ -36,23 +38,27 @@ ActiveRecord::Schema.define(version: 2021_09_12_172456) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "content"
     t.integer "votes"
     t.integer "commentable_id"
     t.string "commentable_type"
-    t.bigint "user_id", null: false
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "heading"
     t.string "description"
     t.integer "votes"
-    t.bigint "user_id", null: false
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_questions_on_deleted_at"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -89,18 +95,20 @@ ActiveRecord::Schema.define(version: 2021_09_12_172456) do
     t.string "unconfirmed_email"
     t.integer "reputation"
     t.string "name"
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "uservotes", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.integer "value"
     t.integer "votable_id"
     t.string "votable_type"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_uservotes_on_user_id"
