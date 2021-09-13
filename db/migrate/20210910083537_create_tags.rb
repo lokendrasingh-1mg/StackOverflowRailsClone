@@ -4,7 +4,7 @@ class CreateTags < ActiveRecord::Migration[6.1]
       t.string :name
       t.index :name, unique: true
 
-      t.timestamps
+      t.timestamps default: -> { 'CURRENT_TIMESTAMP' }
     end
   end
 end

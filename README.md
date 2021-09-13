@@ -58,8 +58,10 @@ This project is a stack overflow clone written in Rails with postgres database
     9. unique constraint to tag: `rails generate migration add_index_to_tags name:uniq`
 
 3. insert_all doesn't add time stamp as its not passed through validators
-    1. Use a custom function that add timestamps
-    2. Use `ActiveSupport::Concern`
-    3. https://codersloth.medium.com/rails-how-to-batch-insert-records-20ea769dcbc4
-    4. `class_method do`
+    1. provide default
+       time https://stackoverflow.com/questions/1580805/how-to-set-a-default-value-for-a-datetime-column-to-record-creation-time-in-a-mi/68202776#68202776
+    2. Use a custom function that add timestamps
+    3. Use `ActiveSupport::Concern`
+    4. https://codersloth.medium.com/rails-how-to-batch-insert-records-20ea769dcbc4
+    5. `class_method do`
        internals https://stackoverflow.com/questions/33326257/what-does-class-methods-do-in-concerns/51932490#51932490
