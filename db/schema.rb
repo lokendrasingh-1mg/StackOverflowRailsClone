@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 2021_09_12_172456) do
   create_table "questions_tags", id: false, force: :cascade do |t|
     t.bigint "question_id", null: false
     t.bigint "tag_id", null: false
+    t.index ["question_id", "tag_id"], name: "index_questions_tags_on_question_id_and_tag_id"
+    t.index ["tag_id", "question_id"], name: "index_questions_tags_on_tag_id_and_question_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -71,6 +73,8 @@ ActiveRecord::Schema.define(version: 2021_09_12_172456) do
   create_table "tags_users", id: false, force: :cascade do |t|
     t.bigint "tag_id", null: false
     t.bigint "user_id", null: false
+    t.index ["tag_id", "user_id"], name: "index_tags_users_on_tag_id_and_user_id"
+    t.index ["user_id", "tag_id"], name: "index_tags_users_on_user_id_and_tag_id"
   end
 
   create_table "users", force: :cascade do |t|
