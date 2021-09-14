@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'question#index'
+  root 'questions#index'
 
   devise_for :users
-  resources :question
+  resources :questions
 end
