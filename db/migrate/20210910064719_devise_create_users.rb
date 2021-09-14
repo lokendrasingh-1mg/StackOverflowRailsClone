@@ -22,8 +22,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       t.integer :reputation
       t.string :name
-      t.datetime :deleted_at, index: true
 
+      t.datetime :deleted_at, index: true
       t.timestamps null: false
     end
 
