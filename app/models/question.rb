@@ -6,7 +6,6 @@ class Question < ApplicationRecord
   validates :description, presence: true, length: { minimum: 10, maximum: 30_000 }
 
   belongs_to :user
-
   has_many :answers
   has_many :comments, as: :commentable
   has_many :user_votes, as: :votable
