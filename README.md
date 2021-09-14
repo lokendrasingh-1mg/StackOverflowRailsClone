@@ -28,6 +28,8 @@ This project is a stack overflow clone written in Rails with postgres database
 
 ## Learnings/ Commands used
 
+### Model
+
 1. devise:
     1. add custom fields to model: https://gist.github.com/withoutwax/46a05861aa4750384df971b641170407
         1. enable scoped_view
@@ -77,8 +79,15 @@ This project is a stack overflow clone written in Rails with postgres database
        internals https://stackoverflow.com/questions/33326257/what-does-class-methods-do-in-concerns/51932490#51932490
 
 4. Model version using paper trail
-   1. `rails generate paper_trail:install`
-   2. https://stevepolito.design/blog/paper-trail-gem-tutorial/
+    1. `rails generate paper_trail:install`
+    2. https://stevepolito.design/blog/paper-trail-gem-tutorial/
+
+### Controller
+
+1. Question:
+    1. `rails g controller Question index new create show edit update destroy`
+    2. json response: `render json: @questions`
+
 # Convention to be followed
 
 1. Structure of the model should be like this.
@@ -103,6 +112,6 @@ This project is a stack overflow clone written in Rails with postgres database
 7. rail_param: https://github.com/nicolasblanco/rails_param
 8. serialization: https://api.rubyonrails.org/classes/ActiveModel/Serialization.html
 9. respond_to: https://api.rubyonrails.org/classes/ActionController/MimeResponds.html
-10. routes 
+10. routes
     1. nested routing
     2. member vs collection
