@@ -85,7 +85,7 @@ This project is a stack overflow clone written in Rails with postgres database
 ### Controller
 
 1. Question:
-    1. `rails g controller Question index new create show edit update destroy`
+    1. `rails g controller questions index new create show edit update destroy`
     2. json response: `render json: @questions`
 
 # Convention to be followed
