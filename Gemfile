@@ -55,9 +55,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
 # User added gems
-gem 'acts_as_paranoid'
-gem 'devise'
-gem 'faker'
-gem 'paper_trail'
+gem 'acts_as_paranoid', '0.7.3'
+gem 'devise', '4.8.0'
+gem 'faker', '2.19.0'
+gem 'paper_trail', '12.1.0'
