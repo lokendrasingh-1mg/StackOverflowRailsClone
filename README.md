@@ -99,3 +99,10 @@ This project is a stack overflow clone written in Rails with postgres database
 3. insert all https://github.com/zdennis/activerecord-import
 4. polymorphic: true https://guides.rubyonrails.org/association_basics.html#polymorphic-associations
 5. scientist tdd: https://github.com/github/scientist
+6. thin model via service layer: https://github.com/nicolasblanco/rails_param
+7. rail_param: https://github.com/nicolasblanco/rails_param
+8. serialization: https://api.rubyonrails.org/classes/ActiveModel/Serialization.html
+9. respond_to: https://api.rubyonrails.org/classes/ActionController/MimeResponds.html
+10. routes 
+    1. nested routing
+    2. member vs collection
