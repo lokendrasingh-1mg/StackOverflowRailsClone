@@ -94,6 +94,10 @@ This project is a stack overflow clone written in Rails with postgres database
     2. json response: `render json: @answers`
     3. serializer: `rails g serializer answer`
 
+3. RSpec
+   1. https://medium.com/@agungsetiawan/rails-model-and-service-object-testing-using-rspec-and-factorybot-case-e-money-transfer-a60865b48baf
+   2. `rails generate rspec:install`
+
 # Convention to be followed
 
 1. Structure of the model should be like this.
