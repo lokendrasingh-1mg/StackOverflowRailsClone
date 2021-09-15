@@ -12,8 +12,7 @@ class AnswersController < ApplicationController
     param_validation
     @user = User.find(params[:user_id])
     @question = Question.find(params[:question_id])
-    @answer = Answer.create!(**answer_params, user: @user, question: @question)
-    @question.answers << @answer
+    @answer = @question.answers.create!(**answer_params, user: @user)
     render json: @answer
   end
 
