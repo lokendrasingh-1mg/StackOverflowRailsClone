@@ -95,8 +95,13 @@ This project is a stack overflow clone written in Rails with postgres database
     3. serializer: `rails g serializer answer`
 
 3. RSpec
-   1. https://medium.com/@agungsetiawan/rails-model-and-service-object-testing-using-rspec-and-factorybot-case-e-money-transfer-a60865b48baf
-   2. `rails generate rspec:install`
+    1. https://medium.com/@agungsetiawan/rails-model-and-service-object-testing-using-rspec-and-factorybot-case-e-money-transfer-a60865b48baf
+    2. `rails generate rspec:install`
+
+4. Comments
+    1. https://rubyinrails.com/2019/04/23/rails-routes-concerns/
+    2. commentable concerns
+    3. `rails g controller comments index new create show edit update destroy`
 
 # Convention to be followed
 

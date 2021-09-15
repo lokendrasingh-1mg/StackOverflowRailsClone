@@ -2,8 +2,12 @@ Rails.application.routes.draw do
   root 'questions#index'
 
   devise_for :users
-  resources :questions do
-    # TODO: level of nesting for comments
-    resources :answers
+
+  concern :commentable do
+    resources :comments
+  end
+
+  resources :questions, concerns: :commentable do
+    resources :answers, concerns: :commentable
   end
 end
