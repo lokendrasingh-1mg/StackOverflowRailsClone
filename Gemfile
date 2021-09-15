@@ -56,6 +56,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # User added gems
+gem 'active_model_serializers', '0.10.12'
 gem 'acts_as_paranoid', '0.7.3'
 gem 'devise', '4.8.0'
 gem 'faker', '2.19.0'
