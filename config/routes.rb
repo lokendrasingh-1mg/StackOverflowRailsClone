@@ -3,11 +3,15 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  concern :commentable do
-    resources :comments
+  concern :votable do
+    resources :votes
   end
 
-  resources :questions, concerns: :commentable do
-    resources :answers, concerns: :commentable
+  concern :commentable do
+    resources :comments, concerns: :votable
+  end
+
+  resources :questions, concerns: %i[commentable votable] do
+    resources :answers, concerns: %i[commentable votable]
   end
 end

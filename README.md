@@ -104,6 +104,11 @@ This project is a stack overflow clone written in Rails with postgres database
     3. `rails g controller comments index new create show edit update destroy`
     4. serializer: `rails g serializer comment`
 
+4. Votes
+    1. votable concerns
+    2. `rails g controller votes index new create show edit update destroy`
+    3. serializer: `rails g serializer vote`
+
 # Convention to be followed
 
 1. Structure of the model should be like this.
