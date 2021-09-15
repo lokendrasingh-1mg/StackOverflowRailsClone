@@ -102,6 +102,7 @@ This project is a stack overflow clone written in Rails with postgres database
     1. https://rubyinrails.com/2019/04/23/rails-routes-concerns/
     2. commentable concerns
     3. `rails g controller comments index new create show edit update destroy`
+    4. serializer: `rails g serializer comment`
 
 # Convention to be followed
 
