@@ -87,9 +87,12 @@ This project is a stack overflow clone written in Rails with postgres database
 1. Question:
     1. `rails g controller questions index new create show edit update destroy`
     2. json response: `render json: @questions`
+    3. serializer: `rails g serializer question`
+    4. https://learn.co/lessons/using-active-model-serializer
 2. Answer:
     1. `rails g controller answers index new create show edit update destroy`
     2. json response: `render json: @answers`
+    3. serializer: `rails g serializer answer`
 
 # Convention to be followed
 
