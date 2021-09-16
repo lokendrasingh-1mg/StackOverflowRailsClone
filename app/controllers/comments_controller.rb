@@ -1,19 +1,26 @@
 class CommentsController < ApplicationController
+  before_action :populate_commentable_type, only: %i[index create show update destroy]
+  before_action :populate_commentable_id, only: %i[show update destroy]
+  before_action :populate_user, only: %i[create update destroy]
+
   def index
-    render json: commentable_type
+    @comment = Comment.where(commentable_type: @commentable_type)
+
+    render json: @comment
   end
 
   def new
   end
 
   def create
-    @user = User.find(params[:user_id])
     @comment = commentable_type.create!(**comment_params, user: @user)
+
     render json: @comment
   end
 
   def show
-    @comment = commentable_type.find_by(id: params[:id])
+    @comment = Comment.where(commentable_type: @commentable_type, commentable_id: @commentable_id)
+
     render json: @comment
   end
 
@@ -21,19 +28,37 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = commentable_type.find_by(id: params[:id])
-    @comment&.update!(comment_params)
+    @comment = commentable_type.find(id: params[:id])
+    @comment.update!(comment_params)
+
     render json: @comment
   end
 
   def destroy
     # TODO: behavior if entity doesn't exist
     @comment = commentable_type.find_by(id: params[:id])
-    @comment&.destroy
+    @comment.destroy
+
     render json: @comment
   end
 
   private
+
+  def populate_commentable_type
+    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
+    @commentable_type = params[:commentable_type]
+  end
+
+  def populate_commentable_id
+    param! :commentable_id, Integer, required: true
+    @commentable_id = params[:commentable_id]
+    @commentable_type = params[:commentable_type]
+  end
+
+  def populate_user
+    param! :user_id, Integer, required: true
+    @user = User.find(params[:user_id])
+  end
 
   # Returns [Question/Answer]Comment depending upon url params
   def commentable_type
