@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :validate_actions, only: %i[create show update destroy]
+  include ActionValidator
+
 
   def index
     @questions = Question.includes(:answers, :comments)
@@ -36,11 +37,6 @@ class QuestionsController < ApplicationController
   end
 
   private
-
-  def validate_actions
-    action = params[:action]
-    send("valid_#{action}")
-  end
 
   def valid_create
     param! :heading, String, required: true, message: 'Question heading not specified'

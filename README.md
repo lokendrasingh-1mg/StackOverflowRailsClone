@@ -89,6 +89,8 @@ This project is a stack overflow clone written in Rails with postgres database
     2. json response: `render json: @questions`
     3. serializer: `rails g serializer question`
     4. https://learn.co/lessons/using-active-model-serializer
+    5. concerns: https://stackoverflow.com/questions/27867124/how-to-use-before-action-in-a-module
+
 2. Answer:
     1. `rails g controller answers index new create show edit update destroy`
     2. json response: `render json: @answers`
@@ -104,7 +106,7 @@ This project is a stack overflow clone written in Rails with postgres database
     3. `rails g controller comments index new create show edit update destroy`
     4. serializer: `rails g serializer comment`
 
-4. Votes
+5. Votes
     1. votable concerns
     2. `rails g controller votes index new create show edit update destroy`
     3. serializer: `rails g serializer vote`
