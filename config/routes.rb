@@ -3,11 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get 'comments/:commentable_type/', to: 'comments#index'
-  get 'comments/:commentable_type/:commentable_id/', to: 'comments#show'
-  post 'comments/:commentable_type/:commentable_id/', to: 'comments#create'
-  put 'comments/:commentable_type/:commentable_id/', to: 'comments#update'
-  delete 'comments/:commentable_type/:commentable_id/', to: 'comments#destroy'
+  get ':commentable_type/comments/', to: 'comments#index'
+  post ':commentable_type/:commentable_id/comments/', to: 'comments#create'
+  put ':commentable_type/:commentable_id/comments/:id', to: 'comments#update'
+  delete ':commentable_type/:commentable_id/comments/:id', to: 'comments#destroy'
 
   resources :questions do
     resources :answers

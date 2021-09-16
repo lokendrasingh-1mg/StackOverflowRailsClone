@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :populate_commentable_type, only: %i[index create show update destroy]
-  before_action :populate_commentable_id, only: %i[show update destroy]
+  before_action :populate_commentable_id, only: %i[create show update destroy]
   before_action :populate_user, only: %i[create update destroy]
 
   def index
@@ -13,7 +13,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = commentable_type.create!(**comment_params, user: @user)
+    klass = @commentable_type.constantize
+    @comment = klass.find(@commentable_id).comments.create!(**comment_params, user: @user)
 
     render json: @comment
   end
@@ -28,7 +29,8 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = commentable_type.find(id: params[:id])
+    klass = @commentable_type.constantize
+    @comment = klass.find(@commentable_id).comments.find(params[:id])
     @comment.update!(comment_params)
 
     render json: @comment
@@ -36,7 +38,8 @@ class CommentsController < ApplicationController
 
   def destroy
     # TODO: behavior if entity doesn't exist
-    @comment = commentable_type.find_by(id: params[:id])
+    klass = @commentable_type.constantize
+    @comment = klass.find(@commentable_id).comments.find(params[:id])
     @comment.destroy
 
     render json: @comment
