@@ -136,3 +136,10 @@ This project is a stack overflow clone written in Rails with postgres database
 10. routes
     1. nested routing
     2. member vs collection
+11. https://guides.rubyonrails.org/v3.1/routing.html#static-segments
+12. includes vs joins
+    1. http://railscasts.com/episodes/181-include-vs-joins?view=asciicast
+    2. https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/QueryMethods.html#method-i-eager_load
+    3. https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/QueryMethods.html#method-i-includes
+    4. https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/QueryMethods.html#method-i-joins
+13. pagination: https://github.com/kaminari/kaminari
