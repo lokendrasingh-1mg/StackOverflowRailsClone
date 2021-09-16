@@ -64,3 +64,34 @@ comment_on_a.user_votes.create!(
 )
 
 first_user.bookmark_questions << question
+
+# TODO: use insert_all
+
+10.times do |n|
+  name = Faker::Name.name
+  email = "example-#{n + 1}@foo.org"
+  password = 'password'
+  User.create!(
+    name: name,
+    email: email,
+    password: password,
+    password_confirmation: password,
+  )
+end
+
+users = User.order(:created_at).take(6)
+10.times do
+  heading = Faker::Lorem.sentence(word_count: 5)
+  description = Faker::Lorem.sentence(word_count: 50)
+  users.each { |user| user.questions.create!(heading: heading, description: description) }
+end
+
+users.each do |user|
+  user.questions.each do |question|
+    10.times do
+      content = Faker::Lorem.sentence(word_count: 50)
+      random_user = users.sample
+      question.answers.create!(content: content, user: random_user)
+    end
+  end
+end
