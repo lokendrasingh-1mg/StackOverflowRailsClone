@@ -90,6 +90,7 @@ This project is a stack overflow clone written in Rails with postgres database
     3. serializer: `rails g serializer question`
     4. https://learn.co/lessons/using-active-model-serializer
     5. concerns: https://stackoverflow.com/questions/27867124/how-to-use-before-action-in-a-module
+    6. pagination: https://github.com/kaminari/kaminari
 
 2. Answer:
     1. `rails g controller answers index new create show edit update destroy`
@@ -131,7 +132,8 @@ This project is a stack overflow clone written in Rails with postgres database
 3. insert all https://github.com/zdennis/activerecord-import
 4. polymorphic: true https://guides.rubyonrails.org/association_basics.html#polymorphic-associations
 5. scientist tdd: https://github.com/github/scientist
-6. thin model via service layer: https://github.com/nicolasblanco/rails_param
+6. thin model via service
+   layer: https://medium.com/cratebind/rails-service-layer-for-keeping-models-skinny-too-db5f9f393da2
 7. rail_param: https://github.com/nicolasblanco/rails_param
 8. serialization: https://api.rubyonrails.org/classes/ActiveModel/Serialization.html
 9. respond_to: https://api.rubyonrails.org/classes/ActionController/MimeResponds.html
@@ -145,3 +147,4 @@ This project is a stack overflow clone written in Rails with postgres database
     3. https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/QueryMethods.html#method-i-includes
     4. https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/QueryMethods.html#method-i-joins
 13. pagination: https://github.com/kaminari/kaminari
+14. member vs collection: https://rubyinrails.com/2019/07/11/rails-routes-member-vs-collection/
