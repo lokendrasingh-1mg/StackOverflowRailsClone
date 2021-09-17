@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   delete ':commentable_type/:commentable_id/comments/:id', to: 'comments#destroy'
 
   resources :questions do
-    resources :answers
+    resources :answers, only: %i[create show update destroy]
   end
 end

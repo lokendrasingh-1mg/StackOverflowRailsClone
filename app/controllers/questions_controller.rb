@@ -1,41 +1,13 @@
 class QuestionsController < ApplicationController
   include ActionValidator
+  include GenericCrud
 
-  def index
-    @questions = Question.includes(:answers, :comments).page(page).per(limit)
-
-    render json: @questions
-  end
-
-  def create
-    @question = user.questions.create!(params_attributes)
-
-    render json: @question
-  end
-
-  def show
-    render json: question
-  end
-
-  # TODO: enforce user authorization
-  def update
-    redirect_to root_path unless valid_user?
-    question.update!(params_attributes)
-
-    render json: question
-  end
-
-  # TODO: mark user as anonymous instead of deleting it
-  # Maybe update the user to -1: anonymous user
-  # or use paranoid to retrieve all questions
-  def destroy
-    redirect_to root_path unless valid_user?
-    question.destroy
-
-    render json: { message: 'Delete Successful' }
-  end
 
   private
+
+  def options
+    @options ||= { user: user }
+  end
 
   def valid_index
     param! :page, Integer, required: false, default: 0
