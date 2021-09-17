@@ -1,9 +1,8 @@
 class QuestionsController < ApplicationController
   include ActionValidator
 
-
   def index
-    @questions = Question.includes(:answers, :comments)
+    @questions = Question.includes(:answers, :comments).page(page).per(limit)
 
     render json: @questions
   end
@@ -38,6 +37,11 @@ class QuestionsController < ApplicationController
 
   private
 
+  def valid_index
+    param! :page, Integer, required: false, default: 0
+    param! :limit, Integer, required: false, default: 10
+  end
+
   def valid_create
     param! :heading, String, required: true, message: 'Question heading not specified'
     param! :description, String, required: true, message: 'Question description not specified'
@@ -70,6 +74,14 @@ class QuestionsController < ApplicationController
 
   def question
     @question ||= Question.find(params[:id])
+  end
+
+  def page
+    @page ||= params[:page]
+  end
+
+  def limit
+    @limit ||= params[:limit]
   end
 
   def valid_user?
