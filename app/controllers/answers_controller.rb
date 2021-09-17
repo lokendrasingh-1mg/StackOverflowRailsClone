@@ -1,61 +1,71 @@
 class AnswersController < ApplicationController
-  before_action :populate_question, only: %i[create update destroy]
-  before_action :populate_answer, only: %i[show update destroy]
-  before_action :populate_user, only: %i[create update destroy]
-  before_action :authenticate_user, only: %i[update destroy]
-
-  def new
-  end
+  include ActionValidator
 
   def create
-    @answer = @question.answers.create!(**create_params, user: @user)
+    @answer = question.answers.create!(**params_attributes, user: user)
 
     render json: @answer
   end
 
   def show
-    render json: @answer
-  end
-
-  def edit
+    render json: answer
   end
 
   def update
-    @answer.update!(create_params)
+    redirect_to root_path unless valid_user?
+    answer.update!(params_attributes)
 
-    render json: @answer
+    render json: answer
   end
 
   def destroy
-    @answer.destroy
+    redirect_to root_path unless valid_user?
+    answer.destroy
 
     render json: { message: 'Delete Successful' }
   end
 
   private
 
-  def create_params
-    param! :content, String, required: true, message: 'Answer content not specified'
-    param! :user_id, Integer, required: true
+  def params_attributes
     params.permit(:content)
   end
 
-  def populate_question
+  def question
+    @question ||= Question.find(params[:question_id])
+  end
+
+  def answer
+    @answer ||= Answer.find(params[:id])
+  end
+
+  def user
+    @user ||= User.find(params[:user_id])
+  end
+
+  def valid_create
     param! :question_id, Integer, required: true
-    @question = Question.find(params[:question_id])
-  end
-
-  def populate_answer
-    param! :id, Integer, required: true
-    @answer = Answer.find(params[:id])
-  end
-
-  def populate_user
     param! :user_id, Integer, required: true
-    @user = User.find(params[:user_id])
+    param! :content, String, required: true, message: 'Answer content not specified'
   end
 
-  def authenticate_user
-    redirect_to root_path unless @answer.user_id == @user.id
+  def valid_show
+    param! :id, Integer, required: true
+  end
+
+  def valid_update
+    param! :question_id, Integer, required: true
+    param! :id, Integer, required: true
+    param! :user_id, Integer, required: true
+  end
+
+  def valid_destroy
+    param! :question_id, Integer, required: true
+    param! :id, Integer, required: true
+    param! :user_id, Integer, required: true
+  end
+
+  def valid_user?
+    answer.user_id == user.id
   end
 end
