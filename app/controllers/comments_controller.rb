@@ -1,45 +1,33 @@
 class CommentsController < ApplicationController
-  before_action :populate_commentable_type, only: %i[index create show update destroy]
-  before_action :populate_commentable_id, only: %i[create show update destroy]
-  before_action :populate_user, only: %i[create update destroy]
+  include ActionValidator
 
   def index
-    @comment = Comment.where(commentable_type: @commentable_type)
+    @comment = Comment.where(commentable_type: commentable_type)
 
     render json: @comment
   end
 
-  def new
-  end
-
   def create
-    klass = @commentable_type.constantize
-    @comment = klass.find(@commentable_id).comments.create!(**comment_params, user: @user)
+    @comment = klass.find(commentable_id).comments.create!(**params_attributes, user: user)
 
     render json: @comment
   end
 
   def show
-    @comment = Comment.where(commentable_type: @commentable_type, commentable_id: @commentable_id)
+    @comment = Comment.where(commentable_type: commentable_type, commentable_id: commentable_id)
 
     render json: @comment
   end
 
-  def edit
-  end
-
   def update
-    klass = @commentable_type.constantize
-    @comment = klass.find(@commentable_id).comments.find(params[:id])
-    @comment.update!(comment_params)
+    @comment = klass.find(commentable_id).comments.find(id)
+    @comment.update!(params_attributes)
 
     render json: @comment
   end
 
   def destroy
-    # TODO: behavior if entity doesn't exist
-    klass = @commentable_type.constantize
-    @comment = klass.find(@commentable_id).comments.find(params[:id])
+    @comment = klass.find(commentable_id).comments.find(id)
     @comment.destroy
 
     render json: @comment
@@ -47,36 +35,56 @@ class CommentsController < ApplicationController
 
   private
 
-  def populate_commentable_type
-    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
-    @commentable_type = params[:commentable_type]
-  end
-
-  def populate_commentable_id
-    param! :commentable_id, Integer, required: true
-    @commentable_id = params[:commentable_id]
-    @commentable_type = params[:commentable_type]
-  end
-
-  def populate_user
-    param! :user_id, Integer, required: true
-    @user = User.find(params[:user_id])
-  end
-
-  # Returns [Question/Answer]Comment depending upon url params
   def commentable_type
-    # TODO: instance variable vs normal variable
-    if params[:answer_id]
-      @answer = Answer.find(params[:answer_id])
-      @comments = @answer.comments
-    else
-      @question = Question.find(params[:question_id])
-      @comments = @question.comments
-    end
+    @commentable_type ||= params[:commentable_type]
   end
 
-  def comment_params
-    params.require(:content)
+  def commentable_id
+    @commentable_id ||= params[:commentable_id]
+  end
+
+  def klass
+    @klass ||= commentable_type.constantize
+  end
+
+  def user
+    @user ||= User.find(params[:user_id])
+  end
+
+  def id
+    @id ||= params[:id]
+  end
+
+  def params_attributes
     params.permit(:content)
+  end
+
+  def valid_index
+    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
+  end
+
+  def valid_create
+    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
+    param! :commentable_id, Integer, required: true
+    param! :user_id, Integer, required: true
+  end
+
+  def valid_show
+    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
+    param! :commentable_id, Integer, required: true
+  end
+
+  def valid_update
+    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
+    param! :commentable_id, Integer, required: true
+    param! :user_id, Integer, required: true
+    param! :id, Integer, required: true
+  end
+
+  def valid_destroy
+    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
+    param! :commentable_id, Integer, required: true
+    param! :user_id, Integer, required: true
+    param! :id, Integer, required: true
   end
 end
