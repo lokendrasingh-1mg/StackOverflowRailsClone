@@ -1,14 +1,9 @@
 class CommentsController < ApplicationController
   include ActionValidator
+  include GenericCrud
 
   def index
     @comment = Comment.where(commentable_type: commentable_type)
-
-    render json: @comment
-  end
-
-  def create
-    @comment = klass.find(commentable_id).comments.create!(**params_attributes, user: user)
 
     render json: @comment
   end
@@ -19,21 +14,26 @@ class CommentsController < ApplicationController
     render json: @comment
   end
 
-  def update
-    @comment = klass.find(commentable_id).comments.find(id)
-    @comment.update!(params_attributes)
-
-    render json: @comment
-  end
-
-  def destroy
-    @comment = klass.find(commentable_id).comments.find(id)
-    @comment.destroy
-
-    render json: @comment
-  end
-
   private
+
+  def resource
+    @resource ||= klass.find_by!(
+      **options,
+      id: id,
+    )
+  end
+
+  def options
+    @options ||= {
+      commentable_type: commentable_type,
+      commentable_id: commentable_id,
+      user: user,
+    }
+  end
+
+  def klass
+    @klass ||= Comment
+  end
 
   def commentable_type
     @commentable_type ||= params[:commentable_type]
@@ -41,10 +41,6 @@ class CommentsController < ApplicationController
 
   def commentable_id
     @commentable_id ||= params[:commentable_id]
-  end
-
-  def klass
-    @klass ||= commentable_type.constantize
   end
 
   def user
