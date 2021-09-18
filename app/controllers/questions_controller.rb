@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   include ActionValidator
   include GenericCrud
+  include Votes
 
   def index
     @questions = Question.includes(:answers, :comments).page(page).per(limit)
