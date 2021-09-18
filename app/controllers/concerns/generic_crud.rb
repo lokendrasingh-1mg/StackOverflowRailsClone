@@ -1,12 +1,6 @@
 module GenericCrud
   extend ActiveSupport::Concern
 
-  def index
-    @entities = klass.includes(:answers, :comments).page(page).per(limit)
-
-    render json: @entities
-  end
-
   def create
     @entity = klass.new(**params_attributes, **options)
     @entity.save!
@@ -15,15 +9,15 @@ module GenericCrud
   end
 
   def show
-    render json: send(resource)
+    render json: resource
   end
 
   # TODO: enforce user authorization
   def update
     redirect_to root_path unless valid_user?
-    send(resource).update!(params_attributes)
+    resource.update!(params_attributes)
 
-    render json: send(resource)
+    render json: resource
   end
 
   # TODO: mark user as anonymous instead of deleting it
@@ -31,31 +25,42 @@ module GenericCrud
   # or use paranoid to retrieve all questions
   def destroy
     redirect_to root_path unless valid_user?
-    send(resource).destroy
+    resource.destroy
 
     render json: { message: 'Delete Successful' }
+  end
+
+  private
+
+  def user
+    @user ||= User.find(params[:user_id])
+  end
+
+  def valid_user?
+    resource.user_id == user.id
   end
 
   # returns singularize resource name from url
   # /questions -> "question"
   # /questions/2 -> "question"
   # /questions?page=2&limit=10 -> "question"
-
-  private
-
-  def resource
+  def resource_name
     remove_query_params = request.url.split('?')[0]
     split_url = remove_query_params.split('/')
-    resource_name = if split_url[-1].to_i.zero?
-                      split_url[-1]
-                    else
-                      split_url[-2]
-                    end
+    name = if split_url[-1].to_i.zero?
+             split_url[-1]
+           else
+             split_url[-2]
+           end
 
-    @resource ||= resource_name.singularize
+    @resource_name ||= name.singularize
   end
 
   def klass
-    @klass ||= resource.capitalize.constantize
+    @klass ||= resource_name.capitalize.constantize
+  end
+
+  def resource
+    @resource ||= klass.find(params[:id])
   end
 end

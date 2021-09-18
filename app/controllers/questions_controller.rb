@@ -2,6 +2,11 @@ class QuestionsController < ApplicationController
   include ActionValidator
   include GenericCrud
 
+  def index
+    @questions = Question.includes(:answers, :comments).page(page).per(limit)
+
+    render json: @questions
+  end
 
   private
 
@@ -40,23 +45,11 @@ class QuestionsController < ApplicationController
     params.permit(:heading, :description)
   end
 
-  def user
-    @user ||= User.find(params[:user_id])
-  end
-
-  def question
-    @question ||= Question.find(params[:id])
-  end
-
   def page
     @page ||= params[:page]
   end
 
   def limit
     @limit ||= params[:limit]
-  end
-
-  def valid_user?
-    question.user_id == user.id
   end
 end
