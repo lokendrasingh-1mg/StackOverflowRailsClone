@@ -10,10 +10,6 @@ class QuestionsController < ApplicationController
 
   private
 
-  def options
-    @options ||= { user: user }
-  end
-
   def valid_index
     param! :page, Integer, required: false, default: 0
     param! :limit, Integer, required: false, default: 10

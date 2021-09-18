@@ -32,6 +32,12 @@ module GenericCrud
 
   private
 
+  def options
+    @options ||= { user: user }
+  end
+
+  # TODO: create a generic getter from params
+  # :user_id, :question_id
   def user
     @user ||= User.find(params[:user_id])
   end
