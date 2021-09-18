@@ -109,8 +109,7 @@ This project is a stack overflow clone written in Rails with postgres database
 
 5. Votes
     1. votable concerns
-    2. `rails g controller votes index new create show edit update destroy`
-    3. serializer: `rails g serializer vote`
+    2. member vs collection: https://rubyinrails.com/2019/07/11/rails-routes-member-vs-collection/
 
 # Convention to be followed
 
