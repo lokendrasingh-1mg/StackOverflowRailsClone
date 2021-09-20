@@ -1,6 +1,5 @@
 class QuestionsController < ApplicationController
   include ActionValidator
-  include GenericCrud
   include Votes
 
   def index

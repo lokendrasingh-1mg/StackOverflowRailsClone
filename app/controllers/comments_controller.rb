@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   include ActionValidator
-  include GenericCrud
 
   def index
     @comment = Comment.where(commentable_type: commentable_type)

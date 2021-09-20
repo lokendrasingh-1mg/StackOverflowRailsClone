@@ -1,6 +1,5 @@
 class AnswersController < ApplicationController
   include ActionValidator
-  include GenericCrud
   include Votes
 
   private
