@@ -147,3 +147,6 @@ This project is a stack overflow clone written in Rails with postgres database
     4. https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/QueryMethods.html#method-i-joins
 13. pagination: https://github.com/kaminari/kaminari
 14. member vs collection: https://rubyinrails.com/2019/07/11/rails-routes-member-vs-collection/
+15. use module specific names to avoid diamond inheritance issue
+    1. : https://stackoverflow.com/questions/51327319/two-modules-with-same-method-names-included-in-same-class
+    2. https://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem
