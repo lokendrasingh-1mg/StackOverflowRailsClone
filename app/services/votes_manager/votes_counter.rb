@@ -7,7 +7,8 @@ module VotesManager
 
     def call
       # TODO: Is this a memory concern?
-      resource.user_votes.map(&:vote_type).sum
+      resource.votes = resource.user_votes.map(&:vote_type).sum
+      resource
     end
 
     private
