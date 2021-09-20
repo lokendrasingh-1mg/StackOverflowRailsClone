@@ -1,6 +1,9 @@
 module GenericCrud
   extend ActiveSupport::Concern
 
+  class UnauthorizedUser < StandardError
+  end
+
   def create
     @entity = klass.new(**params_attributes, **options)
     @entity.save!
@@ -14,7 +17,8 @@ module GenericCrud
 
   # TODO: enforce user authorization
   def update
-    redirect_to root_path unless valid_user?
+    raise UnauthorizedUser unless valid_user?
+
     resource.update!(params_attributes)
 
     render json: resource
@@ -24,7 +28,8 @@ module GenericCrud
   # Maybe update the user to -1: anonymous user
   # or use paranoid to retrieve all questions
   def destroy
-    redirect_to root_path unless valid_user?
+    raise UnauthorizedUser unless valid_user?
+
     resource.destroy
 
     render json: { message: 'Delete Successful' }
