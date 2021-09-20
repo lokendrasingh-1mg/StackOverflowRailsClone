@@ -7,7 +7,6 @@ class AnswersController < ApplicationController
     @klass ||= Answer
   end
 
-  # TODO: instead of overriding how to use Generic Options
   def options
     @options ||= { user: user, question: question }
   end
