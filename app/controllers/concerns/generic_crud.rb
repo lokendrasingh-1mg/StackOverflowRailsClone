@@ -51,26 +51,6 @@ module GenericCrud
     resource.user_id == user.id
   end
 
-  # returns singularize resource name from url
-  # /questions -> "question"
-  # /questions/2 -> "question"
-  # /questions?page=2&limit=10 -> "question"
-  def resource_name
-    remove_query_params = request.url.split('?')[0]
-    split_url = remove_query_params.split('/')
-    name = if split_url[-1].to_i.zero?
-             split_url[-1]
-           else
-             split_url[-2]
-           end
-
-    @resource_name ||= name.singularize
-  end
-
-  def klass
-    @klass ||= resource_name.capitalize.constantize
-  end
-
   def resource
     @resource ||= klass.find(params[:id])
   end

@@ -26,12 +26,4 @@ module Votes
     param! :vote_type, Integer, required: true, in: [1, -1]
   end
 
-  # http://localhost:3000/questions/1/answers/1/votes
-  # http://localhost:3000/questions/2/votes
-  def resource_name
-    split_url = request.url.split('/')
-    name = split_url[-3]
-
-    @resource_name ||= name.singularize
-  end
 end
