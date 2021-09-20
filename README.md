@@ -150,3 +150,27 @@ This project is a stack overflow clone written in Rails with postgres database
 15. use module specific names to avoid diamond inheritance issue
     1. : https://stackoverflow.com/questions/51327319/two-modules-with-same-method-names-included-in-same-class
     2. https://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem
+16. Custom Exception:
+    1. https://rollbar.com/guides/ruby/how-to-raise-exceptions-in-ruby/
+    2. https://stackoverflow.com/questions/1918373/how-do-i-raise-an-exception-in-rails-so-it-behaves-like-other-rails-exceptions/1918405#1918405
+17. Ruby guide
+    1. https://www.zenspider.com/ruby/quickref.html#general-tips
+
+# Lol References
+
+> Don’t rescue Exception. EVER. or I will stab you.
+
+1. https://stackoverflow.com/questions/10048173/why-is-it-bad-style-to-rescue-exception-e-in-ruby
+
+> JavaScript ... It gives you enough rope to hang yourself, all you colleagues, and everyone in the building next door.
+
+2. https://news.ycombinator.com/item?id=15641274
+
+> Test-first fundamentalism is like abstinence-only sex ed: An unrealistic, ineffective morality campaign for self-loathing and shaming.
+> David is author of rails
+
+3. https://dhh.dk/2014/tdd-is-dead-long-live-testing.html
+
+> Ruby includes a lot of sharp knives in its drawer of features. Not by accident, but by design.
+
+4. https://rubyonrails.org/doctrine/#provide-sharp-knives
