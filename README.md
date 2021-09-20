@@ -131,8 +131,10 @@ This project is a stack overflow clone written in Rails with postgres database
 3. insert all https://github.com/zdennis/activerecord-import
 4. polymorphic: true https://guides.rubyonrails.org/association_basics.html#polymorphic-associations
 5. scientist tdd: https://github.com/github/scientist
-6. thin model via service
-   layer: https://medium.com/cratebind/rails-service-layer-for-keeping-models-skinny-too-db5f9f393da2
+6. thin model via service layer
+    1. https://medium.com/cratebind/rails-service-layer-for-keeping-models-skinny-too-db5f9f393da2
+    2. https://dev.to/aweysahmed/what-are-service-objects-in-ruby-on-rails-should-you-use-it-20o2
+    3. https://www.toptal.com/ruby-on-rails/rails-service-objects-tutorial
 7. rail_param: https://github.com/nicolasblanco/rails_param
 8. serialization: https://api.rubyonrails.org/classes/ActiveModel/Serialization.html
 9. respond_to: https://api.rubyonrails.org/classes/ActionController/MimeResponds.html
@@ -155,6 +157,8 @@ This project is a stack overflow clone written in Rails with postgres database
     2. https://stackoverflow.com/questions/1918373/how-do-i-raise-an-exception-in-rails-so-it-behaves-like-other-rails-exceptions/1918405#1918405
 17. Ruby guide
     1. https://www.zenspider.com/ruby/quickref.html#general-tips
+18. attr_accessor
+    1. https://www.rubyguides.com/2018/11/attr_accessor/
 
 # Lol References
 
