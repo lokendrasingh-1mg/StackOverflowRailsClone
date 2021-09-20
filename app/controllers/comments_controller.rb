@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-  include ActionValidator
 
   def index
     @comment = Comment.where(commentable_type: commentable_type)

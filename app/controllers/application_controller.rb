@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :validate_actions, only: %i[index create show update destroy votes]
+
   skip_before_action :verify_authenticity_token
 
   class UnauthorizedUser < StandardError
@@ -35,6 +37,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def validate_actions
+    action = params[:action]
+    send("valid_#{action}")
+  end
 
   def options
     @options ||= { user: user }

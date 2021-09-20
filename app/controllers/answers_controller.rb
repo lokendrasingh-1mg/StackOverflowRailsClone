@@ -1,5 +1,4 @@
 class AnswersController < ApplicationController
-  include ActionValidator
   include Votes
 
   private

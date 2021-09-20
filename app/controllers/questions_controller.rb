@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-  include ActionValidator
   include Votes
 
   def index
