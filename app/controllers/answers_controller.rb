@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  include Votes
+  include Votable
 
   private
 

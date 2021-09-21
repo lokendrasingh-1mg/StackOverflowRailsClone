@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  include Votes
+  include Votable
 
   def index
     @questions = Question.includes(:answers, :comments).page(page).per(limit)

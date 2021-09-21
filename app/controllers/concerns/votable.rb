@@ -1,4 +1,4 @@
-module Votes
+module Votable
   extend ActiveSupport::Concern
 
   def votes
@@ -13,6 +13,6 @@ module Votes
 
   def valid_votes
     param! :user_id, Integer, required: true
-    param! :vote_type, Integer, required: true, in: [1, -1]
+    param! :vote_type, String, required: true, in: %w[up_vote down_vote]
   end
 end
