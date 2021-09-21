@@ -63,6 +63,7 @@ gem 'faker', '2.19.0'
 gem 'kaminari', '1.2.0'
 gem 'paper_trail', '12.1.0'
 gem 'rails_param', '0.11.2'
+gem 'sidekiq', '6.2.2'
 
 group :development, :test do
   gem 'factory_bot_rails', '6.2.0'
