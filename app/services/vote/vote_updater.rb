@@ -1,6 +1,6 @@
 module Vote
   class VoteUpdater < Base
-    def initialize(obj, vote_type, user: nil)
+    def initialize(obj, vote_type, user)
       super(obj, user: user)
       @vote_type = vote_type
 

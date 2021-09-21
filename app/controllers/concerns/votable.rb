@@ -2,7 +2,7 @@ module Votable
   extend ActiveSupport::Concern
 
   def votes
-    render json: VotesManager::VoteUpdater.call(resource, vote_type, user)
+    render json: Vote::VoteUpdater.call(resource, vote_type, user)
   end
 
   private
