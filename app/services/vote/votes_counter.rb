@@ -1,9 +1,9 @@
 module Vote
   class VotesCounter < Base
     def call
-      votable_entity.votes = total_up_vote - total_down_vote
-      votable_entity.save!
-      votable_entity
+      obj.votes = total_up_vote - total_down_vote
+      obj.save!
+      obj
     end
 
     private
