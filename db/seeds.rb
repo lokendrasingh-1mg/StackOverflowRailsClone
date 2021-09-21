@@ -67,7 +67,7 @@ first_user.bookmark_questions << question
 
 # TODO: use insert_all
 
-10.times do |n|
+100.times do |n|
   name = Faker::Name.name
   email = "example-#{n + 1}@foo.org"
   password = 'password'
@@ -79,19 +79,30 @@ first_user.bookmark_questions << question
   )
 end
 
-users = User.order(:created_at).take(6)
-10.times do
+users = User.all
+
+100.times do
   heading = Faker::Lorem.sentence(word_count: 5)
   description = Faker::Lorem.sentence(word_count: 50)
-  users.each { |user| user.questions.create!(heading: heading, description: description) }
+  random_user = users.sample
+  Question.create!(heading: heading, description: description, user: random_user)
 end
 
-users.each do |user|
-  user.questions.each do |question|
-    10.times do
-      content = Faker::Lorem.sentence(word_count: 50)
-      random_user = users.sample
-      question.answers.create!(content: content, user: random_user)
-    end
+Question.all.each do |question|
+  content = Faker::Lorem.sentence(word_count: 50)
+  random_user = users.sample
+  Answer.create!(content: content, question: question, user: random_user)
+end
+
+entities = Question.all + Answer.all + Comment.all
+
+entities.each do |entity|
+  users.sample(20).each do |user|
+    entity.user_votes.create!(
+      vote_type: [1, -1].sample,
+      user: user,
+    )
+    comment = Faker::Lorem.sentence(word_count: 10)
+    Comment.create!(content: comment, commentable: entity, user: user)
   end
 end
