@@ -110,6 +110,9 @@ This project is a stack overflow clone written in Rails with postgres database
 5. Votes
     1. votable concerns
     2. member vs collection: https://rubyinrails.com/2019/07/11/rails-routes-member-vs-collection/
+    3. sidekiq
+        1. `rails generate job task_vote_count_updater`
+        2.
 
 # Convention to be followed
 
@@ -135,6 +138,8 @@ This project is a stack overflow clone written in Rails with postgres database
     1. https://medium.com/cratebind/rails-service-layer-for-keeping-models-skinny-too-db5f9f393da2
     2. https://dev.to/aweysahmed/what-are-service-objects-in-ruby-on-rails-should-you-use-it-20o2
     3. https://www.toptal.com/ruby-on-rails/rails-service-objects-tutorial
+    4. https://www.honeybadger.io/blog/refactor-ruby-rails-service-object/
+    5. https://blog.engineyard.com/keeping-your-rails-controllers-dry-with-services
 7. rail_param: https://github.com/nicolasblanco/rails_param
 8. serialization: https://api.rubyonrails.org/classes/ActiveModel/Serialization.html
 9. respond_to: https://api.rubyonrails.org/classes/ActionController/MimeResponds.html
@@ -159,6 +164,28 @@ This project is a stack overflow clone written in Rails with postgres database
     1. https://www.zenspider.com/ruby/quickref.html#general-tips
 18. attr_accessor
     1. https://www.rubyguides.com/2018/11/attr_accessor/
+19. Sidekiq
+    1. https://www.bigbinary.com/learn-rubyonrails-book/background-job-processing-using-sidekiq
+    2. https://about.gitlab.com/blog/2020/06/24/scaling-our-use-of-sidekiq/
+20. Lazy loading vs eager loading
+    1. https://stackoverflow.com/questions/10084355/eager-loading-and-lazy-loading-in-rails/10084865#10084865
+    2. Eager: `User.find(:all, :include => :friends)`
+    3. Lazy **N + 1**: `users = User.find(:all)`
+21. Concern naming convention:
+    1. https://dev.to/mainstreet/how-to-name-rails-concerns-3m86
+22. Transactions
+    1. https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/Transactions/ClassMethods.html
+23. Concurrency
+    1. https://www.toptal.com/ruby/ruby-concurrency-and-parallelism-a-practical-primer
+    2. https://www.honeybadger.io/blog/ruby-concurrency-parallelism/
+    3. https://pawelurbanek.com/ruby-concurrent-requests
+    4. https://www.bigbinary.com/blog/using-concurrent-ruby-in-a-ruby-on-rails-application
+24. Locking
+    1. https://gist.github.com/ryanermita/464bf88e2fc292e75c9353820c2f0475
+    2. https://api.rubyonrails.org/v6.1.4/classes/ActiveRecord/Locking/Optimistic.html
+    3. https://blog.kiprosh.com/implement-optimistic-locking-in-rails/
+    4. https://dev.to/marcelobarreto/optimistic-lock-on-ruby-on-rails-3n6b
+    5. https://www.ibm.com/docs/en/db2/11.5?topic=overview-optimistic-locking
 
 # Lol References
 
