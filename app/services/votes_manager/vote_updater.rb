@@ -1,27 +1,20 @@
 module VotesManager
   class VoteUpdater < ApplicationService
     def initialize(resource, vote_type, user)
-      @resource = resource
-      @vote_type = vote_type
-      @user = user
+      self.resource = resource
+      self.vote_type = vote_type
+      self.user = user
     end
 
     def call
-      vote = resource.user_votes.find_by(user: user)
-      if vote
-        vote.vote_type = vote_type
-        vote.save!
-        vote
-      else
-        resource.user_votes.create!(
-          vote_type: vote_type,
-          user: user,
-        )
-      end
+      vote = resource.user_votes.find_or_initialize_by(user: user)
+      vote.vote_type = vote_type
+      vote.save!
+      vote
     end
 
     private
 
-    attr_reader :resource, :vote_type, :user
+    attr_accessor :resource, :vote_type, :user
   end
 end
