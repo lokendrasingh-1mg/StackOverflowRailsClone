@@ -165,8 +165,9 @@ This project is a stack overflow clone written in Rails with postgres database
 18. attr_accessor
     1. https://www.rubyguides.com/2018/11/attr_accessor/
 19. Sidekiq
-    1. https://www.bigbinary.com/learn-rubyonrails-book/background-job-processing-using-sidekiq
-    2. https://about.gitlab.com/blog/2020/06/24/scaling-our-use-of-sidekiq/
+    1. https://github.com/mperham/sidekiq/wiki/Best-Practices
+    2. https://www.bigbinary.com/learn-rubyonrails-book/background-job-processing-using-sidekiq
+    3. https://about.gitlab.com/blog/2020/06/24/scaling-our-use-of-sidekiq/
 20. Lazy loading vs eager loading
     1. https://stackoverflow.com/questions/10084355/eager-loading-and-lazy-loading-in-rails/10084865#10084865
     2. Eager: `User.find(:all, :include => :friends)`
@@ -186,6 +187,11 @@ This project is a stack overflow clone written in Rails with postgres database
     3. https://blog.kiprosh.com/implement-optimistic-locking-in-rails/
     4. https://dev.to/marcelobarreto/optimistic-lock-on-ruby-on-rails-3n6b
     5. https://www.ibm.com/docs/en/db2/11.5?topic=overview-optimistic-locking
+25. Database Locks
+    1. Isolation Levels:
+        1. https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/transaction-isolation-levels?view=sql-server-ver15
+    2. Optimistic vs Pessimistic
+        1. https://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking/129397#129397
 
 # Lol References
 
