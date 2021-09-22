@@ -9,6 +9,10 @@ class QuestionsController < ApplicationController
 
   private
 
+  def manager
+    @manager ||= QuestionManager.new(resource, user)
+  end
+
   def klass
     @klass ||= Question
   end

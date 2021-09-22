@@ -3,14 +3,12 @@ class CommentVoteController < ApplicationController
 
   private
 
-  def klass
-    Comment
+  def manager
+    @manager ||= CommentManager.new(resource, user)
   end
 
-  def options
-    @options ||= {
-      user: user,
-    }
+  def klass
+    Comment
   end
 
   def user

@@ -3,6 +3,10 @@ class AnswersController < ApplicationController
 
   private
 
+  def manager
+    @manager ||= AnswerManager.new(resource, user)
+  end
+
   def klass
     @klass ||= Answer
   end
