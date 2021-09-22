@@ -192,6 +192,31 @@ This project is a stack overflow clone written in Rails with postgres database
         1. https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/transaction-isolation-levels?view=sql-server-ver15
     2. Optimistic vs Pessimistic
         1. https://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking/129397#129397
+26. AWS SQS
+    1. docker
+        1. https://onexlab-io.medium.com/localstack-sqs-a0c36fd13108
+        2. installation from official site:
+            1. https://apple.stackexchange.com/questions/373888/how-do-i-start-the-docker-daemon-on-macos/373914#373914
+        3. docker hangs while starting: https://github.com/docker/for-mac/issues/5113#issuecomment-743330545
+        4. health check: `http://localhost:4566/health`
+        5. `aws configure`
+
+    ```ruby
+    region = 'us-east-1'
+    AWS_ACCESS_KEY_ID = '123'
+    AWS_SECRET_KEY = 'xyz'
+    ```
+
+    2. Queue Usage:
+        1. `aws --region us-east-1 --endpoint-url=http://localhost:4566 sqs create-queue --queue-name vote-total-counter`
+        2. This should create a queue: `"http://localhost:4566/000000000000/vote-total-counter"`
+        3. Messages
+            1.
+          list all: `aws --endpoint-url=http://localhost:4566 sqs list-queues`
+           2.
+          send: `aws --endpoint-url=http://localhost:4566 sqs send-message --queue-url http://localhost:4566/000000000000/vote-total-counter --message-body 'Welcome to SQS queue for StackOverflow clone'`
+           3. `aws --endpoint-url=http://localhost:4566 sqs receive-message --queue-url http://localhost:4566/000000000000/vote-total-counter`
+           4. `aws --endpoint-url=http://localhost:4566 sqs delete-queue --queue-url http://localhost:4566/000000000000/vote-total-counter`
 
 # Lol References
 
