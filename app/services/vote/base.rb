@@ -9,7 +9,8 @@ module Vote
       votable_entity.vote_type = vote_type
       votable_entity.save!
       # TaskVoteCountUpdaterJob.set(wait: 1.second).perform_later(self)
-      TaskVoteCountUpdaterJob.perform_now(self)
+      # TaskVoteCountUpdaterJob.perform_now(self)
+      VoteUpdateWorker.perform_async(self)
       votable_entity
     end
 

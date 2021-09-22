@@ -1,5 +1,9 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'questions#index'
+
+  mount Sidekiq::Web => '/sidekiq' # mount Sidekiq::Web in your Rails app
 
   devise_for :users
 
