@@ -1,7 +1,7 @@
 class AnswersController < CrudController
   include Votable
 
-  before_action :votes
+  before_action :validate_actions, only: %i[votes]
 
   private
 
@@ -28,23 +28,23 @@ class AnswersController < CrudController
   # TODO: generic crud validator?
   # similar to 4 args default constructor
   # which is called from: no arg, 1 arg, 2 arg, 3 arg
-  def valid_create
+  def validate_create
     param! :question_id, Integer, required: true
     param! :user_id, Integer, required: true
     param! :content, String, required: true, message: 'Answer content not specified'
   end
 
-  def valid_show
+  def validate_show
     param! :id, Integer, required: true
   end
 
-  def valid_update
+  def validate_update
     param! :question_id, Integer, required: true
     param! :id, Integer, required: true
     param! :user_id, Integer, required: true
   end
 
-  def valid_destroy
+  def validate_destroy
     param! :question_id, Integer, required: true
     param! :id, Integer, required: true
     param! :user_id, Integer, required: true

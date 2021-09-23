@@ -54,29 +54,29 @@ class CommentsController < CrudController
     params.permit(:content)
   end
 
-  def valid_index
+  def validate_index
     param! :commentable_type, String, required: true, in: %w[Question Answer]
   end
 
-  def valid_create
+  def validate_create
     param! :commentable_type, String, required: true, in: %w[Question Answer]
     param! :commentable_id, Integer, required: true
     param! :user_id, Integer, required: true
   end
 
-  def valid_show
+  def validate_show
     param! :commentable_type, String, required: true, in: %w[Question Answer]
     param! :commentable_id, Integer, required: true
   end
 
-  def valid_update
+  def validate_update
     param! :commentable_type, String, required: true, in: %w[Question Answer]
     param! :commentable_id, Integer, required: true
     param! :user_id, Integer, required: true
     param! :id, Integer, required: true
   end
 
-  def valid_destroy
+  def validate_destroy
     param! :commentable_type, String, required: true, in: %w[Question Answer]
     param! :commentable_id, Integer, required: true
     param! :user_id, Integer, required: true

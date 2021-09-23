@@ -1,7 +1,7 @@
 class QuestionsController < CrudController
   include Votable
 
-  before_action %i[index votes]
+  before_action :validate_actions, only: %i[index votes]
 
   def index
     @questions = Question.includes(:answers, :comments).page(page).per(limit)
@@ -19,29 +19,29 @@ class QuestionsController < CrudController
     @klass ||= Question
   end
 
-  def valid_index
+  def validate_index
     param! :page, Integer, required: false, default: 0
     param! :limit, Integer, required: false, default: 10
   end
 
-  def valid_create
+  def validate_create
     param! :heading, String, required: true, message: 'Question heading not specified'
     param! :description, String, required: true, message: 'Question description not specified'
     param! :user_id, Integer, required: true
   end
 
-  def valid_show
+  def validate_show
     param! :id, Integer, required: true
   end
 
-  def valid_update
+  def validate_update
     param! :id, Integer, required: true
     param! :heading, String, required: true, message: 'Question heading not specified'
     param! :description, String, required: true, message: 'Question description not specified'
     param! :user_id, Integer, required: true
   end
 
-  def valid_destroy
+  def validate_destroy
     param! :id, Integer, required: true
     param! :user_id, Integer, required: true
   end

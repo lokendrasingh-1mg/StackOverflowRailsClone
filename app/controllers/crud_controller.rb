@@ -1,6 +1,5 @@
 class CrudController < ApplicationController
-  before_action :validate_actions, only: %i[create show update destroy ]
-  skip_before_action :verify_authenticity_token
+  before_action :validate_actions, only: %i[create show update destroy]
 
   class UnauthorizedUser < StandardError
   end
@@ -39,7 +38,7 @@ class CrudController < ApplicationController
 
   def validate_actions
     action = params[:action]
-    send("valid_#{action}")
+    send("validate_#{action}")
   end
 
   def options
