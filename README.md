@@ -212,11 +212,25 @@ This project is a stack overflow clone written in Rails with postgres database
         2. This should create a queue: `"http://localhost:4566/000000000000/vote-total-counter"`
         3. Messages
             1.
-          list all: `aws --endpoint-url=http://localhost:4566 sqs list-queues`
-           2.
-          send: `aws --endpoint-url=http://localhost:4566 sqs send-message --queue-url http://localhost:4566/000000000000/vote-total-counter --message-body 'Welcome to SQS queue for StackOverflow clone'`
-           3. `aws --endpoint-url=http://localhost:4566 sqs receive-message --queue-url http://localhost:4566/000000000000/vote-total-counter`
-           4. `aws --endpoint-url=http://localhost:4566 sqs delete-queue --queue-url http://localhost:4566/000000000000/vote-total-counter`
+       list all: `aws --endpoint-url=http://localhost:4566 sqs list-queues`
+        2.
+       send: `aws --endpoint-url=http://localhost:4566 sqs send-message --queue-url http://localhost:4566/000000000000/vote-total-counter --message-body 'Welcome to SQS queue for StackOverflow clone'`
+        3. `aws --endpoint-url=http://localhost:4566 sqs receive-message --queue-url http://localhost:4566/000000000000/vote-total-counter`
+        4. `aws --endpoint-url=http://localhost:4566 sqs delete-queue --queue-url http://localhost:4566/000000000000/vote-total-counter`
+    3. aws-ruby
+        1. ruby config setup: `touch config/initializers/aws.rb`
+
+    ```ruby
+    
+    require 'aws-sdk-core'
+    
+    Aws.config.update(
+      region: 'us-west-2', credentials: Aws::Credentials.new('123', 'xyz'), endpoint: 'http://localhost:4566',
+    )
+    ```
+
+        2. rails shoryuken guide: https://www.sitepoint.com/quickly-process-api-requests-with-shoryuken-and-sqs/
+        3. 
 
 # Lol References
 
