@@ -1,5 +1,7 @@
-class QuestionsController < ApplicationController
+class QuestionsController < CrudController
   include Votable
+
+  before_action %i[index votes]
 
   def index
     @questions = Question.includes(:answers, :comments).page(page).per(limit)

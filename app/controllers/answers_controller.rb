@@ -1,5 +1,7 @@
-class AnswersController < ApplicationController
+class AnswersController < CrudController
   include Votable
+
+  before_action :votes
 
   private
 

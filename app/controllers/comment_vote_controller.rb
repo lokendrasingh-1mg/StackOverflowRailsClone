@@ -1,5 +1,7 @@
-class CommentVoteController < ApplicationController
+class CommentVoteController < CrudController
   include Votable
+
+  before_action :votes
 
   private
 

@@ -1,4 +1,5 @@
-class CommentsController < ApplicationController
+class CommentsController < CrudController
+  before_action :index
 
   def index
     @comment = Comment.where(commentable_type: commentable_type)
@@ -54,29 +55,29 @@ class CommentsController < ApplicationController
   end
 
   def valid_index
-    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
+    param! :commentable_type, String, required: true, in: %w[Question Answer]
   end
 
   def valid_create
-    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
+    param! :commentable_type, String, required: true, in: %w[Question Answer]
     param! :commentable_id, Integer, required: true
     param! :user_id, Integer, required: true
   end
 
   def valid_show
-    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
+    param! :commentable_type, String, required: true, in: %w[Question Answer]
     param! :commentable_id, Integer, required: true
   end
 
   def valid_update
-    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
+    param! :commentable_type, String, required: true, in: %w[Question Answer]
     param! :commentable_id, Integer, required: true
     param! :user_id, Integer, required: true
     param! :id, Integer, required: true
   end
 
   def valid_destroy
-    param! :commentable_type, String, required: true, in: ["Question", "Answer"]
+    param! :commentable_type, String, required: true, in: %w[Question Answer]
     param! :commentable_id, Integer, required: true
     param! :user_id, Integer, required: true
     param! :id, Integer, required: true
