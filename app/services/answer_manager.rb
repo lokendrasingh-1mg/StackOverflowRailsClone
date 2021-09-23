@@ -8,7 +8,7 @@ class AnswerManager
   def update_vote!(vote_type)
     answer_vote = Vote::AnswerVote.new(answer, user: user)
     answer_vote.vote_update(vote_type)
-    answer_vote.total_vote_count
+    VoteUpdateWorker.perform_async(answer.id, 'Answer')
   end
 
   private
