@@ -64,3 +64,45 @@ comment_on_a.user_votes.create!(
 )
 
 first_user.bookmark_questions << question
+
+# TODO: use insert_all
+
+100.times do |n|
+  name = Faker::Name.name
+  email = "example-#{n + 1}@foo.org"
+  password = 'password'
+  User.create!(
+    name: name,
+    email: email,
+    password: password,
+    password_confirmation: password,
+  )
+end
+
+users = User.all
+
+100.times do
+  heading = Faker::Lorem.sentence(word_count: 5)
+  description = Faker::Lorem.sentence(word_count: 50)
+  random_user = users.sample
+  Question.create!(heading: heading, description: description, user: random_user)
+end
+
+Question.all.each do |question|
+  content = Faker::Lorem.sentence(word_count: 50)
+  random_user = users.sample
+  Answer.create!(content: content, question: question, user: random_user)
+end
+
+entities = Question.all + Answer.all + Comment.all
+
+entities.each do |entity|
+  users.sample(20).each do |user|
+    entity.user_votes.create!(
+      vote_type: [1, -1].sample,
+      user: user,
+    )
+    comment = Faker::Lorem.sentence(word_count: 10)
+    Comment.create!(content: comment, commentable: entity, user: user)
+  end
+end
